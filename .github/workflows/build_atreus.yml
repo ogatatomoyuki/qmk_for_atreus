@@ -30,7 +30,7 @@ jobs:
       # ファームウェアをビルド
       - name: Compile Atreus Firmware
         run: |
-          qmk compile -kb "$KEYBOARD" -km "$KEYMAP"
+          make "$KEYBOARD":"$KEYMAP"
 
       # 生成されたHEXファイルをArtifactsとして保存
       - name: Upload Firmware Artifact
