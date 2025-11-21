@@ -8,6 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # ★★★ このパーミッションブロックを追加 ★★★
+    permissions:
+      contents: read
+    # ★★★ ここまで追加 ★★★
 
     steps:
       - name: Checkout QMK Firmware
