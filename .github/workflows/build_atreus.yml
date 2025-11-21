@@ -15,24 +15,31 @@ jobs:
       KEYMAP: my_atreus             # キーマップ名
 
     steps:
-      # QMK本体をチェックアウト
-      - name: Checkout QMK Firmware
+      # このリポジトリ（qmk_for_atreus）をチェックアウト
+      - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          repository: qmk/qmk_firmware
           submodules: true
 
-      # 依存パッケージをインストール
-      - name: Install QMK dependencies
+      # QMK CLI をインストールして PATH に通す
+      - name: Install QMK CLI
         run: |
-          ./util/qmk_install.sh
+          python3 -m pip install --user qmk
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          qmk --version
+
+      # このリポジトリを QMK_HOME としてセット
+      - name: Configure QMK home
+        run: |
+          qmk config user.qmk_home="$GITHUB_WORKSPACE"
+          qmk doctor || true
 
       # ファームウェアをビルド
       - name: Compile Atreus Firmware
         run: |
-          make "$KEYBOARD":"$KEYMAP"
+          qmk compile -kb "$KEYBOARD" -km "$KEYMAP"
 
-      # 生成されたHEXファイルをArtifactsとして保存
+      # 生成された HEX を artifacts にアップロード
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
         with:
