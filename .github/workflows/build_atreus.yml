@@ -3,7 +3,7 @@ name: Build Atreus Firmware # アクションの名前
 on:
   push:
     branches:
-      - master # master (または main) ブランチにプッシュされたときに実行
+      - master # または main ブランチにプッシュされたときに実行
 
 jobs:
   build:
@@ -23,10 +23,12 @@ jobs:
         # キーボードとキーマップフォルダ名を指定
         run: |
           qmk compile -kb keyboardio/atreus -km my_atreus
-
-      - name: Upload Firmware Artifact # 生成されたファイルを成果物としてアップロード
+      
+      # ★★★ ここから追記 ★★★
+      - name: Upload Firmware Artifact # 成果物としてアップロードするステップ
         uses: actions/upload-artifact@v4
         with:
           name: atreus_my_atreus_firmware
           # ビルドで生成されたHEXファイルのパスを指定
           path: .build/keyboardio_atreus_my_atreus.hex
+      # ★★★ 追記はここまで ★★★
