@@ -15,8 +15,8 @@ jobs:
         with:
           submodules: true # サブモジュールもクローン
 
-      - name: Set up QMK build environment # QMKビルド環境の準備
-        uses: qmk/qmk_cli-action@v2
+      - name: Set up QMK build environment
+        uses: qmk/qmk_cli-action@v2  # ★ 正しいアクション名
 
       - name: Compile Atreus Firmware # ファームウェアのコンパイルを実行
         id: compile
