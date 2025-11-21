@@ -22,14 +22,14 @@ jobs:
       - name: Clone vial-qmk
         run: |
           git clone --depth=1 https://github.com/vial-kb/vial-qmk.git
-
+      
       - name: Copy keymap files into vial-qmk
         run: |
           mkdir -p vial-qmk/keyboards/keyboardio/atreus/keymaps/vial
-          cp keymap.c  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
-          cp config.h  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
-          cp rules.mk  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
-          cp vial.json vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keyboards/keyboardio/atreus/keymaps/default/keymap.c  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keyboards/keyboardio/atreus/keymaps/default/config.h  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keyboards/keyboardio/atreus/keymaps/default/rules.mk  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keyboards/keyboardio/atreus/keymaps/default/vial.json vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
 
       - name: Build firmware (keyboardio/atreus:vial)
         run: |
