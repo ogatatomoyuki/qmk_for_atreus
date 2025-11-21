@@ -1,18 +1,23 @@
 name: Build Atreus Vial Firmware (official vial-qmk)
 
 on:
-  workflow_dispatch:   # 手動実行だけにする（pushトリガーは一旦ナシ）
+  workflow_dispatch:   # 手動実行のみ
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install AVR toolchain
+      - name: Install build dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            gcc-avr binutils-avr avr-libc make git
+            gcc-avr binutils-avr avr-libc make git python3 python3-pip
+
+          # qmk CLI をインストールして PATH に通す
+          python3 -m pip install --user qmk
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          qmk --version
 
       - name: Clone official vial-qmk
         run: |
