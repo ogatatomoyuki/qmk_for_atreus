@@ -1,0 +1,32 @@
+name: Build Atreus Firmware # アクションの名前
+
+on:
+  push:
+    branches:
+      - master # master (または main) ブランチにプッシュされたときに実行
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 実行環境の指定 (Linux)
+
+    steps:
+      - name: Checkout QMK Firmware # QMKリポジトリのクローン
+        uses: actions/checkout@v4
+        with:
+          submodules: true # サブモジュールもクローン
+
+      - name: Set up QMK build environment # QMKビルド環境の準備
+        uses: qmk/qmk_cli-action@v2
+
+      - name: Compile Atreus Firmware # ファームウェアのコンパイルを実行
+        id: compile
+        # キーボードとキーマップフォルダ名を指定
+        run: |
+          qmk compile -kb keyboardio/atreus -km my_atreus
+
+      - name: Upload Firmware Artifact # 生成されたファイルを成果物としてアップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: atreus_my_atreus_firmware
+          # ビルドで生成されたHEXファイルのパスを指定
+          path: .build/keyboardio_atreus_my_atreus.hex
