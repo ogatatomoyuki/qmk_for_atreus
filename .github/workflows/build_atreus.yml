@@ -1,4 +1,4 @@
-name: Build Atreus Firmware
+name: Build Atreus Vial Firmware
 
 on:
   push:
@@ -10,38 +10,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      KEYBOARD: keyboardio/atreus   # キーボード名
-      KEYMAP: my_atreus             # キーマップ名
-
     steps:
-      # このリポジトリ（qmk_for_atreus）をチェックアウト
-      - name: Checkout repo
+      # このリポジトリ（キー定義だけ入っているリポジトリ）をチェックアウト
+      - name: Checkout keymap repo
         uses: actions/checkout@v4
-        with:
-          submodules: true
 
-      # QMK CLI をインストールして PATH に通す
-      - name: Install QMK CLI
+      # AVR 用ツールチェーンをインストール（Atreus は ATmega32U4）
+      - name: Install AVR toolchain
         run: |
-          python3 -m pip install --user qmk
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-          qmk --version
+          sudo apt-get update
+          sudo apt-get install -y gcc-avr binutils-avr avr-libc make git
 
-      # このリポジトリを QMK_HOME としてセット
-      - name: Configure QMK home
+      # vial-qmk をクローン
+      - name: Clone vial-qmk
         run: |
-          qmk config user.qmk_home="$GITHUB_WORKSPACE"
-          qmk doctor || true
+          git clone --depth=1 https://github.com/vial-kb/vial-qmk.git
+          ls -R
 
-      # ファームウェアをビルド
-      - name: Compile Atreus Firmware
+      # Atreus 用の vial キーマップフォルダを作成し、このリポジトリのファイルをコピー
+      - name: Copy keymap files into vial-qmk
         run: |
-          qmk compile -kb "$KEYBOARD" -km "$KEYMAP"
+          mkdir -p vial-qmk/keyboards/keyboardio/atreus/keymaps/vial
+          cp keymap.c  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp config.h  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp rules.mk  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp vial.json vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
 
-      # 生成された HEX を artifacts にアップロード
-      - name: Upload Firmware Artifact
+      # ファームをビルド
+      - name: Build firmware (keyboardio/atreus:vial)
+        run: |
+          cd vial-qmk
+          make keyboardio/atreus:vial
+
+      # 生成された HEX をアップロード
+      - name: Upload firmware artifact
         uses: actions/upload-artifact@v4
         with:
-          name: atreus_${{ env.KEYMAP }}_firmware
-          path: ./.build/*.hex
+          name: keyboardio_atreus_vial_firmware
+          path: |
+            vial-qmk/*.hex
+            vial-qmk/*.bin
