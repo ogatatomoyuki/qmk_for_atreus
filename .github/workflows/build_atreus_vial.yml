@@ -1,0 +1,34 @@
+name: Build Atreus Vial Firmware (official vial-qmk)
+
+on:
+  workflow_dispatch:   # 手動実行だけにする（pushトリガーは一旦ナシ）
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install AVR toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            gcc-avr binutils-avr avr-libc make git
+
+      - name: Clone official vial-qmk
+        run: |
+          git clone --depth=1 https://github.com/vial-kb/vial-qmk.git
+          cd vial-qmk
+          git submodule update --init --recursive
+
+      - name: Build keyboardio/atreus:vial
+        run: |
+          cd vial-qmk
+          make keyboardio/atreus:vial
+
+      - name: Upload firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: keyboardio_atreus_vial_firmware
+          path: |
+            vial-qmk/*.hex
+            vial-qmk/*.bin
