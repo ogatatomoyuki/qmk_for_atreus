@@ -1,7 +1,7 @@
 QMK_SETTINGS = yes
 
 # --- 必要最小限 ---
-VIA_ENABLE = yes
+VIA_ENABLE = no
 VIAL_ENABLE = yes
 LTO_ENABLE = yes
 EEPROM_ENABLE = yes
