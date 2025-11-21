@@ -54,15 +54,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case GUISP:
             if (record->event.pressed) {
-                // キーが押されたとき: 左GUIを押してからスペースを押す (LGUI + SPACE)
-                register_code(KC_LGUI);
-                register_code(KC_SPACE);
-            } else {
-                // キーが離されたとき: スペースを離してから左GUIを離す
-                unregister_code(KC_SPACE);
-                unregister_code(KC_LGUI);
+                // Cmd + Space を1発送る
+                tap_code16(LGUI(KC_SPACE));
             }
-            return false;
+            return false;  // ここで処理終了（他には流さない）
     }
     return true;
 }
