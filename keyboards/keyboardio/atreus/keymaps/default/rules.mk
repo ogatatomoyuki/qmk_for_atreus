@@ -1,30 +1,36 @@
-# --- Vial 本体 ---
-VIAL_ENABLE         = yes
-VIA_ENABLE          = no        # VIA は使わないので off 推奨
-EEPROM_ENABLE       = yes       # 設定を保存するため必須（通常はデフォルトで yes）
+QMK_SETTINGS = yes
 
-# --- QMK Settings（Vial の Tap-Hold 設定タブを有効にする） ---
-QMK_SETTINGS        = yes
+# --- 必要最小限 ---
+VIA_ENABLE = yes
+VIAL_ENABLE = yes
+LTO_ENABLE = yes
+EEPROM_ENABLE = yes
 
-# --- 不要機能は切って容量を確保 ---
-MOUSEKEY_ENABLE     = no
-EXTRAKEY_ENABLE     = no
-CONSOLE_ENABLE      = no
-COMMAND_ENABLE      = no
-NKRO_ENABLE         = no
-BACKLIGHT_ENABLE    = no
-RGBLIGHT_ENABLE     = no
-AUDIO_ENABLE        = no
-UNICODE_ENABLE      = no
-UNICODEMAP_ENABLE   = no
-TAP_DANCE_ENABLE    = no        # Tap Dance を使うなら yes に
-LEADER_ENABLE       = no
-COMBO_ENABLE        = no
+# --- 重い/不要機能は全部OFF ---
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+MOUSEKEY_ENABLE = yes
+EXTRAKEY_ENABLE = no
+NKRO_ENABLE = no
+BACKLIGHT_ENABLE = no
+RGBLIGHT_ENABLE = no
+RGB_MATRIX_ENABLE = no
+AUDIO_ENABLE = no
+MIDI_ENABLE = no
+SLEEP_LED_ENABLE = no
+
+# QMKの便利系も削る
+MAGIC_ENABLE = no
+BOOTMAGIC_ENABLE = no          # 必要なら _LITE を yes に（それでも重ければ no のまま）
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = yes
+TAP_DANCE_ENABLE = no
+LEADER_ENABLE = no
+COMBO_ENABLE = no
+UNICODE_ENABLE = no
+UNICODEMAP_ENABLE = no
 KEY_OVERRIDE_ENABLE = no
-CAPS_WORD_ENABLE    = no
-STENO_ENABLE        = no
-AUTOCORRECT_ENABLE  = no
-MAGIC_ENABLE        = no
-BOOTMAGIC_ENABLE    = no
-SPACE_CADET_ENABLE  = no
-GRAVE_ESC_ENABLE    = no        # 必要なら yes に
+CAPS_WORD_ENABLE = no
+STENO_ENABLE = no
+AUTOCORRECT_ENABLE = no
+
