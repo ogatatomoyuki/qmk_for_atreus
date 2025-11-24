@@ -1,22 +1,21 @@
-# Vial 本体
+# ----- Vial 基本設定 -----
 VIAL_ENABLE   = yes
-VIA_ENABLE    = no        # VIAL だけ使う前提
-EEPROM_ENABLE = yes       # 設定保存に必要
+VIA_ENABLE    = no
+EEPROM_ENABLE = yes
 
-# QMK Settings を有効化（前に使っていた Tap/Hold 設定UI用）
-QMK_SETTINGS  = no
-
-# コードサイズ削減
+QMK_SETTINGS  = no        # ※ 容量の都合でオフ（タップ設定は config.h でやる方針）
 LTO_ENABLE    = yes
 
-# ---- 不要な機能は全部OFFにする ----
+# Alt Repeat Key は使わないのでオフ（これが今回のエラーの原因）
+ALT_REPEAT_KEY_ENABLE = no
+
+# ----- 不要な機能を全部OFFにして軽量化 -----
 CONSOLE_ENABLE       = no
 COMMAND_ENABLE       = no
 MAGIC_ENABLE         = no
 BOOTMAGIC_ENABLE     = no
 SPACE_CADET_ENABLE   = no
 GRAVE_ESC_ENABLE     = no
-ALT_REPEAT_KEY_ENABLE = no
 
 MOUSEKEY_ENABLE      = no
 EXTRAKEY_ENABLE      = no
