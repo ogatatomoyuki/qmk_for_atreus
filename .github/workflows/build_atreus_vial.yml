@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # このリポジトリを取得（config.h / rules.mk / keymap.c / vial.json用）
+      - name: Checkout keymap repo
+        uses: actions/checkout@v4
+
       - name: Install build dependencies
         run: |
           sudo apt-get update
@@ -23,7 +27,14 @@ jobs:
           cd vial-qmk
           git submodule update --init --recursive
 
-      # ★ここを追加
+      - name: Copy my Atreus Vial keymap into vial-qmk
+        run: |
+          mkdir -p vial-qmk/keyboards/keyboardio/atreus/keymaps/vial
+          cp config.h  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp rules.mk  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keymap.c  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp vial.json vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+
       - name: Build keyboardio/atreus:vial
         run: |
           cd vial-qmk
