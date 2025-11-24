@@ -30,10 +30,10 @@ jobs:
       - name: Copy my Atreus Vial keymap into vial-qmk
         run: |
           mkdir -p vial-qmk/keyboards/keyboardio/atreus/keymaps/vial
-          cp config.h  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
-          cp rules.mk  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
-          cp keymap.c  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
-          cp vial.json vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keyboards/keyboardio/atreus/keymaps/default/config.h  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keyboards/keyboardio/atreus/keymaps/default/rules.mk  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keyboards/keyboardio/atreus/keymaps/default/keymap.c  vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
+          cp keyboards/keyboardio/atreus/keymaps/default/vial.json vial-qmk/keyboards/keyboardio/atreus/keymaps/vial/
 
       - name: Build keyboardio/atreus:vial
         run: |
