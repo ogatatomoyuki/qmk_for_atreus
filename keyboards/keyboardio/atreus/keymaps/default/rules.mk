@@ -7,7 +7,7 @@ LTO_ENABLE          = yes
 EEPROM_ENABLE       = yes
 
 # 余計な設定画面はいらない
-QMK_SETTINGS        = no
+QMK_SETTINGS        = yes
 
 # --- 必要なければ全部 no に（あとで必要になったら yes に変える） ---
 MOUSEKEY_ENABLE     = no   # マウスキー使うなら yes
