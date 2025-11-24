@@ -1,16 +1,15 @@
-# ----- Vial 基本設定 -----
+# Vial 本体
 VIAL_ENABLE   = yes
-VIA_ENABLE    = no        # VIAL専用にするので VIA は不要
-EEPROM_ENABLE = yes       # Vial の設定保存に必要
+VIA_ENABLE    = no        # VIAL だけ使う前提
+EEPROM_ENABLE = yes       # 設定保存に必要
 
-# QMK_SETTINGS はフラッシュ容量的に無理なので OFF
-# （Tap/Hold の数値は config.h のマクロで固定）
-QMK_SETTINGS  = no
+# QMK Settings を有効化（前に使っていた Tap/Hold 設定UI用）
+QMK_SETTINGS  = yes
 
-# リンク時最適化（コードサイズ削減）
+# コードサイズ削減
 LTO_ENABLE    = yes
 
-# ----- 不要な機能を全てOFFにして軽量化 -----
+# ---- 不要な機能は全部OFFにする ----
 CONSOLE_ENABLE       = no
 COMMAND_ENABLE       = no
 MAGIC_ENABLE         = no
