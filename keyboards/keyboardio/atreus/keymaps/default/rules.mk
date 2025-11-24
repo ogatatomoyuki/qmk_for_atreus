@@ -4,7 +4,7 @@ VIA_ENABLE    = no        # VIAL だけ使う前提
 EEPROM_ENABLE = yes       # 設定保存に必要
 
 # QMK Settings を有効化（前に使っていた Tap/Hold 設定UI用）
-QMK_SETTINGS  = yes
+QMK_SETTINGS  = no
 
 # コードサイズ削減
 LTO_ENABLE    = yes
