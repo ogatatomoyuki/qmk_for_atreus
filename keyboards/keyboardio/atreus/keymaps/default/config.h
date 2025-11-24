@@ -5,8 +5,8 @@
 // ----- Vial 固有設定 -----
 #define VIAL_KEYBOARD_UID {0x6B, 0xBA, 0xFA, 0x7D, 0xDA, 0x53, 0xF5, 0x0C}
 
-#define VIAL_UNLOCK_COMBO_ROWS { 0, 0, 3, 3, 3 }
-#define VIAL_UNLOCK_COMBO_COLS { 0, 1, 7, 10, 11 }
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 0, 3, 3 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 1, 7, 10 }
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
 
@@ -15,7 +15,7 @@
 // （あなたが貼ってくれた QMK Settings の値をそのままコンパイル時マクロにしたもの）
 
 // Tapping Term = 75
-#define TAPPING_TERM 75
+#define TAPPING_TERM 150
 
 // Permissive Hold = ON
 #define PERMISSIVE_HOLD
@@ -25,7 +25,7 @@
 
 // Retro Tapping = OFF（何も定義しないのでデフォルトOFF）
 
-// Quick Tap Term = 65
+// Quick Tap Term = 120
 #define QUICK_TAP_TERM 65
 
 // Tap Code Delay = 15
