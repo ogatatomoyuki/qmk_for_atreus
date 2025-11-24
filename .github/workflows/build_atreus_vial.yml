@@ -24,13 +24,6 @@ jobs:
           git submodule update --init --recursive
 
       # ★ここを追加
-      - name: Enable QMK_SETTINGS for Atreus keymap
-        run: |
-          cd vial-qmk
-          echo "" >> keyboards/keyboardio/atreus/keymaps/vial/rules.mk
-          echo "# Enable QMK Settings for tap/hold tuning" >> keyboards/keyboardio/atreus/keymaps/vial/rules.mk
-          echo "QMK_SETTINGS = yes" >> keyboards/keyboardio/atreus/keymaps/vial/rules.mk
-
       - name: Build keyboardio/atreus:vial
         run: |
           cd vial-qmk
