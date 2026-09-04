@@ -1,37 +1,21 @@
-# ----- Vial 基本設定 -----
-VIAL_ENABLE   = yes
-VIA_ENABLE    = no
-EEPROM_ENABLE = yes
+# VIAL 廃止（容量確保）
+VIA_ENABLE = no
+VIAL_ENABLE = no
 
-QMK_SETTINGS  = no        # ※ 容量の都合でオフ（タップ設定は config.h でやる方針）
-LTO_ENABLE    = yes
+# 有効化
+COMBO_ENABLE = yes
+CAPS_WORD_ENABLE = no     # 自前実装を使用
+MOUSEKEY_ENABLE = yes    # スクロール用（KC_WH_U/D）
+EXTRAKEY_ENABLE = yes    # 音量キー用
 
-# Alt Repeat Key は使わないのでオフ（これが今回のエラーの原因）
-ALT_REPEAT_KEY_ENABLE = no
-
-# ----- 不要な機能を全部OFFにして軽量化 -----
-CONSOLE_ENABLE       = no
-COMMAND_ENABLE       = no
-MAGIC_ENABLE         = no
-BOOTMAGIC_ENABLE     = no
-SPACE_CADET_ENABLE   = no
-GRAVE_ESC_ENABLE     = no
-
-MOUSEKEY_ENABLE      = no
-EXTRAKEY_ENABLE      = no
-NKRO_ENABLE          = no
-BACKLIGHT_ENABLE     = no
-RGBLIGHT_ENABLE      = no
-RGB_MATRIX_ENABLE    = no
-AUDIO_ENABLE         = no
-MIDI_ENABLE          = no
-
-UNICODE_ENABLE       = no
-UNICODEMAP_ENABLE    = no
-STENO_ENABLE         = no
-AUTOCORRECT_ENABLE   = no
-CAPS_WORD_ENABLE     = no
-KEY_OVERRIDE_ENABLE  = no
-TAP_DANCE_ENABLE     = no
-LEADER_ENABLE        = no
-COMBO_ENABLE         = no
+# 無効化（容量節約）
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+NKRO_ENABLE = no
+BACKLIGHT_ENABLE = no
+RGBLIGHT_ENABLE = no
+AUDIO_ENABLE = no
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no
+MAGIC_ENABLE = no
+MUSIC_ENABLE = no
